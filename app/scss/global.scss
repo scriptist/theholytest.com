@@ -1,0 +1,16 @@
+@import "settings";
+@import "mixins";
+@import "typography";
+@import "components";
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+:root {
+	background: white;
+}
+
+body {
+	margin: 0;
+}

@@ -1,0 +1,42 @@
+RewriteEngine On
+
+# Redirect to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+# Cachebust in filename
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpg|gif|js\.map|css\.map)$ $1.$3 [L]
+
+
+# Redirect CSS, JS, bower components, and images
+RewriteRule ^css/(.*)?$ /web/css/$1 [L]
+RewriteRule ^js/(.*)?$ /web/js/$1 [L]
+RewriteRule ^bower_components/(.*)?$ /web/bower_components/$1 [L]
+RewriteRule ^image/(.*)?$ /web/image/$1 [L]
+
+
+# Take everything that isn't a file straight to app.php to handle
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* app.php [QSA]
+
+
+# Redirect all /app/* things to app.php even if they are files
+RewriteCond %{REQUEST_URI} ^/app/
+RewriteRule .* app.php [QSA]
+
+
+# Set Expires Headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>

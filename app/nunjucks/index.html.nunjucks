@@ -1,0 +1,5 @@
+{% extends "_layout.html.nunjucks" %}
+{% block content %}
+	<h1>Home</h1>
+	Hello!
+{% endblock %}
