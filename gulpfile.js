@@ -131,7 +131,7 @@ gulp.task('cleancss', require('del').bind(null, ['tmp/css/*.css']));
 
 gulp.task('cleanjs', require('del').bind(null, ['tmp/js/*.js']));
 
-gulp.task('clean', ['cleancss', 'cleanjs']);
+gulp.task('clean', require('del').bind(null, ['tmp', 'dist']));
 
 gulp.task('watch', ['scss', 'es6', 'nunjucks'], function() {
 	browserSync({
