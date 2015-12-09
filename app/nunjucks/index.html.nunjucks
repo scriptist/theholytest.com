@@ -4,7 +4,14 @@
 
 		<p>Ready: {{currentGame.ready}}</p>
 
-		<ul v-if="currentGame.lines">
+		<p>Finished: {{currentGame.finished}}</p>
+
+		<p>Score: {{currentGame.score}}</p>
+
+		<p v-if="currentGame.ready && !currentGame.finished">Line: {{currentGame.currentLine.text}} - {{currentGame.currentLine.source}}</p>
+		<button @click="currentGame.guess('bible')">Bible</button><button @click="currentGame.guess('quran')">Quran</button>
+
+		<ul v-if="currentGame.ready">
 			<li v-for="line in currentGame.lines">{{line.text}} - {{line.source}}</li>
 		</ul>
 

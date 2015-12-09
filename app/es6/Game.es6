@@ -6,18 +6,31 @@ var offlineData = require('offlineData.json');
 module.exports = class Game {
 	constructor() {
 		this.lineCount = 10;
+
+		this.currentLineIndex = null;
+		this.finished = false;
 		this.lines = null;
 		this.listeners = {};
+		this.score = 0;
 
 		this.on('ready', () => {
 			console.log('Ready!', this.lines);
 		});
 
 		this.ready = false;
-		this.getLines(lines => {
+		this.getLines(() => {
+			this.currentLineIndex = 0;
+
 			this.ready = true;
 			this.notify('ready');
 		});
+	}
+
+	get currentLine() {
+		if (typeof this.currentLineIndex === 'number')
+			return this.lines[this.currentLineIndex];
+		else
+			return null;
 	}
 
 	// Get lines from the API
@@ -56,6 +69,23 @@ module.exports = class Game {
 		this.lines = lines;
 
 		callback();
+	}
+
+	// Guess a either the bible or the quran
+	guess(source) {
+		if (typeof this.currentLineIndex !== 'number')
+			return;
+
+		if (source === this.currentLine.source)
+			this.score++;
+
+		if (this.currentLineIndex === this.lines.length - 1) {
+			this.finished = true;
+			this.currentLineIndex = null;
+			this.notify('finished');
+		} else {
+			this.currentLineIndex++;
+		}
 	}
 
 	// Bind a function to a named event
