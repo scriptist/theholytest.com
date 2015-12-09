@@ -2,18 +2,30 @@
 {% block content %}
 	{% raw %}
 
-		<p>Ready: {{currentGame.ready}}</p>
+		<h1>The Holy Test</h1>
 
-		<p>Finished: {{currentGame.finished}}</p>
+		<div class="loading" v-if="!currentGame.ready">Loading...</div>
 
-		<p>Score: {{currentGame.score}}</p>
+		<div class="game" v-if="currentGame.ready && !currentGame.finished">
+			<h2>Question {{currentGame.currentLineIndex + 1}}</h2>
+			<p>Line: {{currentGame.currentLine.text | censor}} - {{currentGame.currentLine.source}}</p>
+			<button type="button" @click="currentGame.guess('bible')">Bible</button>
+			<button type="button" @click="currentGame.guess('quran')">Quran</button>
+		</div>
 
-		<p v-if="currentGame.ready && !currentGame.finished">Line: {{currentGame.currentLine.text}} - {{currentGame.currentLine.source}}</p>
-		<button @click="currentGame.guess('bible')">Bible</button><button @click="currentGame.guess('quran')">Quran</button>
+		<div class="finish" v-if="currentGame.finished">
+			<p>Congratulations. You scored {{currentGame.score}}/{{currentGame.lineCount}}</p>
+			<button type="button" @click="newGame()">New Game</button>
+		</div>
 
-		<ul v-if="currentGame.ready">
-			<li v-for="line in currentGame.lines">{{line.text}} - {{line.source}}</li>
-		</ul>
+
+		<code style="display: block;margin-top:2em;">
+			Debug info:<br><br>
+			Ready: {{currentGame.ready}}<br>
+			Offline: {{currentGame.offline}}<br>
+			Finished: {{currentGame.finished}}<br>
+			Score: {{currentGame.score}}/{{currentGame.lineCount}}
+		</code>
 
 	{% endraw %}
 {% endblock %}

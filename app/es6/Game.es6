@@ -11,6 +11,7 @@ module.exports = class Game {
 		this.finished = false;
 		this.lines = null;
 		this.listeners = {};
+		this.offline = null;
 		this.score = 0;
 
 		this.ready = false;
@@ -38,6 +39,9 @@ module.exports = class Game {
 		xhr.onload = () => {
 			try {
 				var responseJSON = JSON.parse(xhr.responseText);
+				if (responseJSON.lines.length !== this.lineCount) {
+					throw new Exception('Incorrect number of lines');
+				}
 				this.offline = false;
 				this.lines = responseJSON.lines;
 				callback();
