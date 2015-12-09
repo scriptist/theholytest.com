@@ -13,10 +13,6 @@ module.exports = class Game {
 		this.listeners = {};
 		this.score = 0;
 
-		this.on('ready', () => {
-			console.log('Ready!', this.lines);
-		});
-
 		this.ready = false;
 		this.getLines(() => {
 			this.currentLineIndex = 0;
