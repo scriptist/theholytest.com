@@ -1,5 +1,7 @@
 {
   "name": "theholytest.com",
   "dependencies": {
+    "vue": "~1.0.10",
+    "object-assign-shim": "~1.0.0"
   }
 }

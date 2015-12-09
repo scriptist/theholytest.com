@@ -1,6 +1,4 @@
 'use strict';
 
-((window, console) => {
-	console.log('Hello!');
-	console.log('There');
-})(window, window.console);
+var Holytest = require('Holytest.es6');
+new Holytest(document.body);
