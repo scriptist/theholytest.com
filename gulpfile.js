@@ -44,6 +44,9 @@ gulp.task('es6', ['lintes6', 'cleanjs'], function() {
 			onError(err);
 			this.emit("end");
 		})
+		.pipe($.plumber({
+			errorHandler: onError
+		}))
 		.pipe(source('global.es6'))
 		.pipe(buffer())
 		.pipe($.rename({
