@@ -6,6 +6,7 @@ var offlineData = require('offlineData.json');
 module.exports = class Game {
 	constructor() {
 		this.lineCount = 10;
+		this.lines = null;
 		this.listeners = {};
 
 		this.on('ready', () => {

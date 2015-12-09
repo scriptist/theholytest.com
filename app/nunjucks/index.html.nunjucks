@@ -1,5 +1,12 @@
 {% extends "_layout.html.nunjucks" %}
 {% block content %}
-	<h1>Home</h1>
-	Hello!
+	{% raw %}
+
+		<p>Ready: {{currentGame.ready}}</p>
+
+		<ul v-if="currentGame.lines">
+			<li v-for="line in currentGame.lines">{{line.text}} - {{line.source}}</li>
+		</ul>
+
+	{% endraw %}
 {% endblock %}

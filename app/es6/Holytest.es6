@@ -8,7 +8,14 @@ module.exports = class Holytest {
 		this.parent = parent;
 		this.games = [];
 
+		// Start game
 		this.newGame();
+
+		// Init Vue
+		this.vue = new Vue({
+			el: this.parent,
+			data: this,
+		});
 	}
 
 	newGame() {
