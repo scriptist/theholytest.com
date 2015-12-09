@@ -4,11 +4,23 @@
 
 		<h1>The Holy Test</h1>
 
-		<div class="loading" v-if="!currentGame.ready">Loading...</div>
+		<div class="intro" v-if="!currentGame.started">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<button type="button" @click="currentGame.start()" :disabled="!currentGame.ready">Start Game</button>
+			<div class="loading" v-if="!currentGame.ready">Loading...</div>
+		</div>
 
-		<div class="game" v-if="currentGame.ready && !currentGame.finished">
+		<div class="game" v-if="currentGame.started && !currentGame.finished">
+
+			<div class="result" v-if="currentGame.lastLine">
+				<p>Your guess: {{currentGame.lastLine.guess}}</p>
+				<p>Answer: {{currentGame.lastLine.source}}</p>
+				<p v-if="currentGame.lastLine.guess === currentGame.lastLine.source">Correct!</p>
+				<p v-else>Inorrect!</p>
+			</div>
+
 			<h2>Question {{currentGame.currentLineIndex + 1}}</h2>
-			<p>Line: {{currentGame.currentLine.text | censor}} - {{currentGame.currentLine.source}}</p>
+			<p>Line: {{currentGame.currentLine.text | censor}}</p>
 			<button type="button" @click="currentGame.guess('bible')">Bible</button>
 			<button type="button" @click="currentGame.guess('quran')">Quran</button>
 		</div>

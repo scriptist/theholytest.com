@@ -27,6 +27,7 @@ module.exports = class Holytest {
 
 	newGame() {
 		var game = new Game();
+		this.lastGame = this.currentGame;
 		this.currentGame = game;
 		this.games.push(game);
 	}

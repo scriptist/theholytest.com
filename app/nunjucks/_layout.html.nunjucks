@@ -2,13 +2,13 @@
 <html>
 <head>
 
-	<title>{% block title %}Generator Slim Twig SCSS Babel (and Gulp){% endblock %}</title>
+	<title>{% block title %}The Holy Test{% endblock %}</title>
 	<meta charset='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- CSS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" media="all" href="{{'/css/global.css' }}" />
+	<link rel="stylesheet" media="all" href="/css/global.css" />
 	<link rel="icon" type="image/png" href="/image/favicon.png" />
 </head>
 <body>
@@ -19,7 +19,7 @@
 
 
 	<!-- JavaScript -->
-	<script src="{{'/js/global.js' }}"></script>
+	<script src="/js/global.js"></script>
 	{% block scripts %}{% endblock %}
 
 

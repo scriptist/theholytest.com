@@ -12,9 +12,10 @@ module.exports = class Game {
 		this.lines = null;
 		this.listeners = {};
 		this.offline = null;
-		this.score = 0;
-
 		this.ready = false;
+		this.score = 0;
+		this.started = false;
+
 		this.getLines(() => {
 			this.currentLineIndex = 0;
 
@@ -26,6 +27,13 @@ module.exports = class Game {
 	get currentLine() {
 		if (typeof this.currentLineIndex === 'number')
 			return this.lines[this.currentLineIndex];
+		else
+			return null;
+	}
+
+	get lastLine() {
+		if (typeof this.currentLineIndex === 'number' && this.currentLineIndex > 0)
+			return this.lines[this.currentLineIndex - 1];
 		else
 			return null;
 	}
@@ -76,6 +84,8 @@ module.exports = class Game {
 		if (typeof this.currentLineIndex !== 'number')
 			return;
 
+		this.currentLine.guess = source;
+
 		if (source === this.currentLine.source)
 			this.score++;
 
@@ -86,6 +96,15 @@ module.exports = class Game {
 		} else {
 			this.currentLineIndex++;
 		}
+	}
+
+	// Start game
+	start() {
+		if (!this.ready || this.started)
+			return;
+
+		this.started = true;
+		this.notify('started');
 	}
 
 	// Bind a function to a named event
