@@ -5,6 +5,7 @@
 	<title>{% block title %}The Holy Test{% endblock %}</title>
 	<meta charset='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Do you think you can tell the difference between the Bible and the Quran? Take this simple test to find out.">
 
 	<!-- CSS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,700,300' rel='stylesheet' type='text/css'>
