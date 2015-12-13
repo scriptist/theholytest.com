@@ -10,7 +10,7 @@ if (window.location.pathname !== '/') {
 }
 
 
-if (document.readyState === 'complete') {
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
 	init();
 } else {
 	document.addEventListener('DOMContentLoaded', init);
