@@ -47,7 +47,7 @@
 				<li><a href="http://www.tumblr.com/share?v=3&u={{scoreURL | uriComponent}}&t={{scoreURLTitle | uriComponent}}&s=" target="_blank" title="Post to Tumblr" @click.prevent="openShareWindow"><img src="/image/Tumblr.svg"></a></li>
 				<li><a href="http://www.reddit.com/submit?url={{shareURL | uriComponent}}&title={{'Can you guess if these verses are from the Bible or the Quran?' | uriComponent}}" target="_blank" title="Submit to Reddit"><img src="/image/Reddit.svg"></a></li>
 			</ul>
-			<button type="button" class="button" @click="newGame()">New Game</button>
+			<button type="button" class="button" @click="newGame(true)">New Game</button>
 		</div>
 
 	{% endraw %}

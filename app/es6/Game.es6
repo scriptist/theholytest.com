@@ -99,22 +99,19 @@ module.exports = class Game {
 			if (this.currentLineIndex === this.lines.length - 1) {
 				this.finished = true;
 				this.currentLineIndex = null;
-				this.notify('finished');
-
-				this.track('end', undefined, this.score);
+				this.notify('end', {
+					score: this.score
+				});
 			} else {
 				this.currentLineIndex++;
 			}
 		}, this.resultTimeout);
 
-		this.track('guess', this.currentLine.source + '-' + this.currentLine.guess, this.currentLine.source === this.currentLine.guess ? 1 : 0);
-	}
-
-	track(action, label, value) {
-		if (typeof window.ga !== 'function')
-			return;
-
-		window.ga('send', 'event', 'game', action, label, value);
+		this.notify('guess', {
+			source: this.currentLine.source,
+			guess: this.currentLine.guess,
+			correct: this.currentLine.source === this.currentLine.guess,
+		});
 	}
 
 	// Start game
@@ -123,8 +120,7 @@ module.exports = class Game {
 			return;
 
 		this.started = true;
-		this.notify('started');
-		this.track('start');
+		this.notify('start');
 	}
 
 	// Bind a function to a named event

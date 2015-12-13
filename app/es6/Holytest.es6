@@ -15,6 +15,7 @@ module.exports = class Holytest {
 	constructor(parent) {
 		this.parent = parent;
 		this.games = [];
+		this.nextGame = null;
 		this.shareURL = window.location.protocol + '//' + window.location.host;
 
 		// Start game
@@ -29,8 +30,8 @@ module.exports = class Holytest {
 				scoreURLTitle: this.generateScoreURLTitle,
 			},
 			methods: {
-				newGame: this.newGame,
-				openShareWindow: this.openShareWindow
+				newGame: this.newGame.bind(this),
+				openShareWindow: this.openShareWindow.bind(this),
 			},
 		});
 	}
@@ -45,11 +46,31 @@ module.exports = class Holytest {
 		return 'I scored ' + score + '/10 on The Holy Test - how will you go?';
 	}
 
-	newGame() {
-		var game = new Game();
-		this.lastGame = this.currentGame;
+	newGame(startImmediately) {
+		var game;
+		if (this.nextGame) {
+			game = this.nextGame;
+			this.nextGame = null;
+		} else {
+			game = new Game();
+		}
+
 		this.currentGame = game;
 		this.games.push(game);
+
+		game.on('start', (data) => {
+			this.track('start');
+			this.preloadGame();
+		});
+		game.on('guess', (data) => {
+			this.track('guess', data.source + '-' + data.guess, data.correct ? 1 : 0);
+		});
+		game.on('end', (data) => {
+			this.track('end', undefined, data.score);
+		});
+
+		if (startImmediately)
+			game.start();
 	}
 
 	openShareWindow(e) {
@@ -61,5 +82,21 @@ module.exports = class Holytest {
 			return;
 
 		window.open(elm.href, 'share', 'height=500,width=500');
+		this.track('share', elm.title);
+	}
+
+	preloadGame() {
+		if (this.nextGame)
+			return;
+
+		this.nextGame = new Game();
+	}
+
+	track(action, label, value) {
+		console.log('track', action, label, value);
+		if (typeof window.ga !== 'function' || location.hostname === 'localhost')
+			return;
+
+		window.ga('send', 'event', 'game', action, label, value);
 	}
 }
