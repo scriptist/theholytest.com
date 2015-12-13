@@ -2,10 +2,16 @@
 <html>
 <head>
 
-	<title>{% block title %}The Holy Test{% endblock %}</title>
+	<title>{{ title }}</title>
 	<meta charset='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Do you think you can tell the difference between the Bible and the Quran? Take this simple test to find out.">
+	<meta property="og:image" content="http://www.theholytest.com/image/og_image.jpg" />
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@scriptist">
+	<meta name="twitter:title" content="{{ title }}">
+	<meta name="twitter:description" content="Do you think you can tell the difference between the Bible and the Quran? Take this simple test to find out.">
+	<meta name="twitter:image" content="http://www.theholytest.com/image/og_image.jpg">
 
 	<!-- CSS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,700,300' rel='stylesheet' type='text/css'>

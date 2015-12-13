@@ -1,11 +1,9 @@
 {% extends "_layout.html.nunjucks" %}
-{% block title -%}
-	{% if score != undefined -%}
-		I scored {{score|int}}/10 on The Holy Test - how will you go?
-	{%- else -%}
-		The Holy Test
-	{%- endif %}
-{%- endblock %}
+{% if score != undefined %}
+	{% set title = 'I scored ' + score + '/10 on The Holy Test - how will you go?' %}
+{% else %}
+	{% set title = 'The Holy Test' %}
+{% endif %}
 {% block content %}
 	{% raw %}
 
