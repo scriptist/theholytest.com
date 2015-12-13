@@ -1,0 +1,17 @@
+.ad-unit {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	transition: transform $transition-long;
+
+	&.ad-unit--hidden {
+		transform: translateY(100%);
+	}
+
+	.ad-unit__ad {
+		background: #ccc;
+		margin: 0 auto;
+	}
+}

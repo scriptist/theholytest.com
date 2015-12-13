@@ -8,7 +8,7 @@ Vue.filter('censor', function(str) {
 });
 
 Vue.filter('uriComponent', function (str) {
-  return encodeURIComponent(str);
+	return encodeURIComponent(str);
 })
 
 module.exports = class Holytest {
@@ -71,6 +71,12 @@ module.exports = class Holytest {
 
 		if (startImmediately)
 			game.start();
+
+		// Load new ad
+		setTimeout(() => {
+			document.querySelector('ins').removeAttribute('data-adsbygoogle-status');
+			(window.adsbygoogle = window.adsbygoogle || []).push({});
+		}, 800);
 	}
 
 	openShareWindow(e) {
@@ -93,7 +99,6 @@ module.exports = class Holytest {
 	}
 
 	track(action, label, value) {
-		console.log('track', action, label, value);
 		if (typeof window.ga !== 'function' || location.hostname === 'localhost')
 			return;
 
