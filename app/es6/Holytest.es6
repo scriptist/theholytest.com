@@ -15,6 +15,7 @@ module.exports = class Holytest {
 	constructor(parent) {
 		this.parent = parent;
 		this.games = [];
+		this.shareURL = window.location.protocol + '//' + window.location.host;
 
 		// Start game
 		this.newGame();

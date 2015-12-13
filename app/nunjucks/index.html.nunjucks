@@ -12,11 +12,11 @@
 		<div class="intro" v-if="!currentGame.started">
 			<h1 class="intro__header">The Holy Test</h1>
 			<p class="intro__description">Guess whether each of the ten quotes is from the Christian Bible or the Muslim Quran.</p>
-			<button type="button" class="button" @click="currentGame.start()" v-if="currentGame.ready">Start Game</button>
+			<button type="button" class="button hide" @click="currentGame.start()" v-if="currentGame.ready" :class="{'hide': false}">Start Game</button>
 			<button type="button" class="button" disabled v-else>Loading</button>
 		</div>
 
-		<div class="game" v-if="currentGame.started && !currentGame.finished">
+		<div class="game hide" v-if="currentGame.started && !currentGame.finished" :class="{'hide': false}">
 			<div class="game__result" v-if="currentGame.showingResult" transition="game__result--transition">
 				<div class="game__result__inner" v-if="currentGame.currentLine">
 					<h2 class="game__result__message">{{currentGame.currentLine.guess === currentGame.currentLine.source ? 'Correct' : 'Incorrect'}}</h2>
@@ -31,21 +31,21 @@
 			</div>
 
 			<h2>Question {{currentGame.currentLineIndex + 1}} <small>/ {{currentGame.lineCount}}</small></h2>
-			<p class="game__line">{{currentGame.currentLine.text | censor}}</p>
+			<p class="game__line" :class="{'game__line--small': currentGame.currentLine.text.length > 125}">{{currentGame.currentLine.text | censor}}</p>
 			<button type="button" class="button" @click="currentGame.guess('bible')">Bible</button>
 			<button type="button" class="button" @click="currentGame.guess('quran')">Quran</button>
 		</div>
 
-		<div class="finish" v-if="currentGame.finished">
+		<div class="finish hide" v-if="currentGame.finished" :class="{'hide': false}">
 			<h2 class="finish__header">Your Score:</h2>
 			<p class="finish__score">{{currentGame.score}}/{{currentGame.lineCount}}</p>
 			<p class="finish__share-text">Share your score:</p>
 			<ul class="finish__share">
 				<li><a href="https://www.facebook.com/sharer/sharer.php?u={{scoreURL | uriComponent}}&amp;t={{scoreURLTitle | uriComponent}}" title="Share on Facebook" target="_blank" @click.prevent="openShareWindow"><img src="/image/Facebook.svg"></a></li>
-				<li><a href="https://twitter.com/intent/tweet?source={{scoreURL | uriComponent}}&amp;text={{scoreURLTitle | uriComponent}}:%20{{scoreURL | uriComponent}}&amp;via=scriptist" target="_blank" title="Tweet" @click.prevent="openShareWindow"><img src="/image/Twitter.svg"></a></li>
+				<li><a href="https://twitter.com/intent/tweet?source={{scoreURL | uriComponent}}&amp;text={{scoreURLTitle | uriComponent}}:%20{{shareURL | uriComponent}}&amp;via=scriptist" target="_blank" title="Tweet" @click.prevent="openShareWindow"><img src="/image/Twitter.svg"></a></li>
 				<li><a href="https://plus.google.com/share?url={{scoreURL | uriComponent}}" target="_blank" title="Share on Google+" @click.prevent="openShareWindow"><img src="/image/Google+.svg"></a></li>
 				<li><a href="http://www.tumblr.com/share?v=3&u={{scoreURL | uriComponent}}&t={{scoreURLTitle | uriComponent}}&s=" target="_blank" title="Post to Tumblr" @click.prevent="openShareWindow"><img src="/image/Tumblr.svg"></a></li>
-				<li><a href="http://www.reddit.com/submit?url={{scoreURL | uriComponent}}&title={{'Can you guess if these verses are from the Bible or the Quran?' | uriComponent}}" target="_blank" title="Submit to Reddit"><img src="/image/Reddit.svg"></a></li>
+				<li><a href="http://www.reddit.com/submit?url={{shareURL | uriComponent}}&title={{'Can you guess if these verses are from the Bible or the Quran?' | uriComponent}}" target="_blank" title="Submit to Reddit"><img src="/image/Reddit.svg"></a></li>
 			</ul>
 			<button type="button" class="button" @click="newGame()">New Game</button>
 		</div>
