@@ -100,10 +100,21 @@ module.exports = class Game {
 				this.finished = true;
 				this.currentLineIndex = null;
 				this.notify('finished');
+
+				this.track('end', undefined, this.score);
 			} else {
 				this.currentLineIndex++;
 			}
 		}, this.resultTimeout);
+
+		this.track('guess', this.currentLine.source + '-' + this.currentLine.guess, this.currentLine.source === this.currentLine.guess ? 1 : 0);
+	}
+
+	track(action, label, value) {
+		if (typeof window.ga !== 'function')
+			return;
+
+		window.ga('send', 'event', 'game', action, label, value);
 	}
 
 	// Start game
@@ -113,6 +124,7 @@ module.exports = class Game {
 
 		this.started = true;
 		this.notify('started');
+		this.track('start');
 	}
 
 	// Bind a function to a named event
