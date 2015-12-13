@@ -1,0 +1,29 @@
+.finish {
+	.finish__header {
+		margin: 0;
+	}
+
+	.finish__score {
+		font-family: $font-serif;
+		font-size: 3em;
+		margin: 0 0 0.5em;
+	}
+
+	.finish__share-text {
+		margin-bottom: 0;
+	}
+
+	.finish__share {
+		list-style: none;
+		margin: 0 0 1em;
+		padding: 0;
+
+		li {
+			display: inline;
+		}
+
+		img {
+			height: 30px;
+		}
+	}
+}

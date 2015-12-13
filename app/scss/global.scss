@@ -9,8 +9,18 @@
 
 :root {
 	background: white;
+	border: $border-width solid $border-color;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
 }
 
 body {
 	margin: 0;
+
+	position: absolute;
+	top: $border-width;
+	right: $border-width;
+	bottom: $border-width;
+	left: $border-width;
 }

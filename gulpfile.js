@@ -59,7 +59,10 @@ gulp.task('es6', ['lintes6', 'cleanjs'], function() {
 });
 
 gulp.task('nunjucks', function () {
-	return gulp.src('app/nunjucks/[^_]*.html.nunjucks')
+	return gulp.src('app/nunjucks/**/[^_]*.html.nunjucks')
+		.pipe($.plumber({
+			errorHandler: onError
+		}))
 		.pipe($.nunjucksHtml({
 			searchPaths: ['app/nunjucks']
 		}))

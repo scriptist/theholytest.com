@@ -1,0 +1,16 @@
+.logo {
+	height: $border-width;
+	overflow: hidden;
+
+	position: absolute;
+	top: -$border-width;
+	right: 0;
+
+	h1 {
+		color: white;
+		font-size: $border-width * 1.5;
+		margin: 0;
+		line-height: 0.7;
+		text-transform: uppercase;
+	}
+}

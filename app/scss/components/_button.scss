@@ -1,0 +1,19 @@
+.button {
+	background-color: $button-color;
+	border: 0;
+	color: white;
+	cursor: pointer;
+	font-size: 1.5em;
+	padding: 0.5em 1em;
+
+	transition: background-color $transition-short;
+
+	&[disabled] {
+		background-color: gray;
+		cursor: not-allowed;
+	}
+
+	&:not([disabled]):hover {
+		background-color: darken($button-color, 10%);
+	}
+}

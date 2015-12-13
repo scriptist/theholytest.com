@@ -6,6 +6,7 @@ var offlineData = require('offlineData.json');
 module.exports = class Game {
 	constructor() {
 		this.lineCount = 10;
+		this.resultTimeout = 1500;
 
 		this.currentLineIndex = null;
 		this.finished = false;
@@ -14,6 +15,7 @@ module.exports = class Game {
 		this.offline = null;
 		this.ready = false;
 		this.score = 0;
+		this.showingResult = false;
 		this.started = false;
 
 		this.getLines(() => {
@@ -81,7 +83,7 @@ module.exports = class Game {
 
 	// Guess a either the bible or the quran
 	guess(source) {
-		if (typeof this.currentLineIndex !== 'number')
+		if (this.showingResult || typeof this.currentLineIndex !== 'number')
 			return;
 
 		this.currentLine.guess = source;
@@ -89,13 +91,19 @@ module.exports = class Game {
 		if (source === this.currentLine.source)
 			this.score++;
 
-		if (this.currentLineIndex === this.lines.length - 1) {
-			this.finished = true;
-			this.currentLineIndex = null;
-			this.notify('finished');
-		} else {
-			this.currentLineIndex++;
-		}
+		this.showingResult = true;
+
+		setTimeout(() => {
+			this.showingResult = false;
+
+			if (this.currentLineIndex === this.lines.length - 1) {
+				this.finished = true;
+				this.currentLineIndex = null;
+				this.notify('finished');
+			} else {
+				this.currentLineIndex++;
+			}
+		}, this.resultTimeout);
 	}
 
 	// Start game

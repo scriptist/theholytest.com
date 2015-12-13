@@ -1,0 +1,2 @@
+{% set score = 9 %}
+{% include "index.html.nunjucks" %}

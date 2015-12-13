@@ -1,0 +1,45 @@
+.game {
+	.game__line {
+		font-family: $font-serif;
+		font-size: 2em;
+
+		@media screen and (max-width: #{$content-width}) {
+			font-size: calc(1em + 1vw + 1vh);
+		}
+	}
+
+	.game__result {
+		background: white;
+		opacity: 1;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		transition: opacity $transition-long, transform $transition-long;
+
+		&.game__result--transition-enter {
+			opacity: 0;
+			transform: scale(0.8);
+		}
+
+		&.game__result--transition-leave {
+			transition: none;
+		}
+
+		.game__result__message {
+			font-size: 2em;
+		}
+
+		.game__result__attribution {
+			font-family: $font-serif;
+			font-size: 1.4em;
+		}
+	}
+}
