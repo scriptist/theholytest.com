@@ -10,6 +10,9 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,700,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" media="all" href="/css/global.css" />
 	<link rel="icon" type="image/png" href="/image/favicon.png" />
+
+	<!-- JavaScript -->
+	<script src="/js/global.js" async></script>
 </head>
 <body>
 
@@ -20,11 +23,6 @@
 	<div class="content">
 		{% block content %}{% endblock %}
 	</div>
-
-
-	<!-- JavaScript -->
-	<script src="/js/global.js"></script>
-	{% block scripts %}{% endblock %}
 
 
 	<!-- Google Analytics -->
