@@ -1,0 +1,16 @@
+.attribution {
+	color: white;
+
+	position: absolute;
+	right: 0;
+	bottom: -$border-width;
+
+	a {
+		color: inherit;
+
+		&:hover {
+			color: #aaf;
+			text-shadow: 0 0 10px rgba(white, 0.5);
+		}
+	}
+}

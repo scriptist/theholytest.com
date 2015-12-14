@@ -23,13 +23,17 @@
 </head>
 <body>
 
-	<div class="logo">
+	<header class="logo">
 		<h1>The Holy Test</h1>
-	</div>
+	</header>
 
 	<div class="content">
 		{% block content %}{% endblock %}
 	</div>
+
+	<footer class="attribution">
+		By <a href="http://scripti.st" target="_blank">Scriptist</a>
+	</footer>
 
 
 	<!-- Google Analytics -->
