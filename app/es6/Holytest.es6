@@ -95,7 +95,7 @@ module.exports = class Holytest {
 
 	openShareWindow(e) {
 		var elm = e.target;
-		while (elm.parentElement && !elm.href) {
+		while (elm.parentElement && elm.tagName !== 'A') {
 			elm = elm.parentElement;
 		}
 		if (!elm.href)
