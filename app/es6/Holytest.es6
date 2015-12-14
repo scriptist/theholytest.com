@@ -9,7 +9,7 @@ Vue.filter('censor', function(str) {
 
 Vue.filter('uriComponent', function (str) {
 	return encodeURIComponent(str);
-})
+});
 
 module.exports = class Holytest {
 	constructor(parent) {
@@ -72,7 +72,7 @@ module.exports = class Holytest {
 		this.currentGame = game;
 		this.games.push(game);
 
-		game.on('start', (data) => {
+		game.on('start', () => {
 			this.track('start');
 			this.preloadGame();
 		});
@@ -118,4 +118,4 @@ module.exports = class Holytest {
 
 		window.ga('send', 'event', 'game', action, label, value);
 	}
-}
+};

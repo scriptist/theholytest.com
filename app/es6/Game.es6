@@ -5,7 +5,7 @@ var offlineData = require('offlineData.json');
 
 module.exports = class Game {
 	constructor() {
-		this.lineCount = 10;
+		this.lineCount = 1;
 		this.resultTimeout = 1500;
 
 		this.currentLineIndex = null;
@@ -50,7 +50,7 @@ module.exports = class Game {
 			try {
 				var responseJSON = JSON.parse(xhr.responseText);
 				if (responseJSON.lines.length !== this.lineCount) {
-					throw new Exception('Incorrect number of lines');
+					throw 'Incorrect number of lines';
 				}
 				this.offline = false;
 				this.lines = responseJSON.lines;
@@ -100,7 +100,7 @@ module.exports = class Game {
 				this.finished = true;
 				this.currentLineIndex = null;
 				this.notify('end', {
-					score: this.score
+					score: this.score,
 				});
 			} else {
 				this.currentLineIndex++;
@@ -137,4 +137,4 @@ module.exports = class Game {
 		this.listeners[event].forEach(f => f(data));
 		return this;
 	}
-}
+};

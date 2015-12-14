@@ -89,12 +89,12 @@ gulp.task('buildjs', ['es6'], function() {
 
 gulp.task('lintes6', function() {
 	return gulp
-		.src('app/es6/global.es6')
+		.src('app/es6/**/*.es6')
 		.pipe($.eslint({
 			extends: 'eslint:recommended',
 			env: {
-				"amd": true,
 				"browser": true,
+				"commonjs": true,
 			},
 			parser: 'babel-eslint',
 			rules: {
