@@ -13,6 +13,11 @@ Vue.filter('uriComponent', function (str) {
 
 module.exports = class Holytest {
 	constructor(parent) {
+		if (!this.supported) {
+			window.document.documentElement.className += ' is-unsupported';
+			return;
+		}
+
 		this.parent = parent;
 		this.games = [];
 		this.nextGame = null;
@@ -34,6 +39,15 @@ module.exports = class Holytest {
 				openShareWindow: this.openShareWindow.bind(this),
 			},
 		});
+	}
+
+	get supported() {
+		// No support for IE 9 and below
+		var ua = navigator.userAgent.toLowerCase();
+		if (ua.indexOf('msie') !== -1 && parseInt(ua.split('msie')[1]) < 10)
+			return false;
+
+		return true;
 	}
 
 	generateScoreURL() {

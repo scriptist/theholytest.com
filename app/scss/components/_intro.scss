@@ -2,4 +2,8 @@
 	.intro__header {
 		margin-top: 0;
 	}
+
+	.is-unsupported & {
+		display: none;
+	}
 }

@@ -48,6 +48,12 @@
 			<button type="button" class="button" @click="newGame(true)">New Game</button>
 		</div>
 
+		<div class="unsupported">
+			<h1>Browser not supported</h1>
+			<p>Sorry, your browser is not supported. Please visit this site in Chrome, Firefox, Safari, or IE10+.</p>
+			<a href="http://browsehappy.com/" class="button" target="_blank">Upgrade browser</a>
+		</div>
+
 		<div class="ad-unit ad-unit--hidden" :class="{'ad-unit--hidden': !currentGame.finished}">
 			<!-- Google AdSense -->
 			<ins class="adsbygoogle ad-unit__ad"
