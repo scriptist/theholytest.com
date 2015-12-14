@@ -5,7 +5,7 @@ var offlineData = require('offlineData.json');
 
 module.exports = class Game {
 	constructor() {
-		this.lineCount = 1;
+		this.lineCount = 10;
 		this.resultTimeout = 1500;
 
 		this.currentLineIndex = null;
