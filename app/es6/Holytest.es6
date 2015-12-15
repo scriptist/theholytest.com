@@ -5,7 +5,7 @@ var Game = require('Game.es6');
 
 Vue.filter('censor', function(str) {
 	// Censor terms
-	str = str.replace(/koran|jinn/ig, str => new Array(str.length + 1).join('█'));
+	str = str.replace(/koran|jinn|suran/ig, str => new Array(str.length + 1).join('█'));
 
 	// Replaces references to god with [GOD]
 	str = str.replace(/(the )?((lord( god)?)|god)/ig, 'God');
