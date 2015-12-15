@@ -7,11 +7,19 @@
 			font-size: calc(1em + 1vw + 1vh);
 		}
 
+		@media screen and (max-width: 400px) {
+			font-size: calc(1.2em);
+		}
+
 		&.game__line--small {
 			font-size: 1.5em;
 
 			@media screen and (max-width: #{$content-width}) {
 				font-size: calc(1em + 0.5vw + 0.5vh);
+			}
+
+			@media screen and (max-width: 400px) {
+				font-size: calc(1em);
 			}
 		}
 	}
