@@ -42,6 +42,8 @@ module.exports = class Game {
 
 	// Get lines from the API
 	getLines(callback) {
+		return this.getLinesOffline(callback);
+
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'http://api.theholytest.com/random/' + this.lineCount + '?t=' + new Date().getTime(), true);
 		xhr.timeout = 5000;
@@ -112,6 +114,8 @@ module.exports = class Game {
 			guess: this.currentLine.guess,
 			correct: this.currentLine.source === this.currentLine.guess,
 		});
+
+		return;
 
 		// Call API
 		var xhr = new XMLHttpRequest();
