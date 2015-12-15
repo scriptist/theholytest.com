@@ -4,7 +4,16 @@ var Vue = require('vue/dist/vue.js');
 var Game = require('Game.es6');
 
 Vue.filter('censor', function(str) {
-	return str.replace(/koran|jinn/ig, str => new Array(str.length + 1).join('█'));
+	// Censor terms
+	str = str.replace(/koran|jinn/ig, str => new Array(str.length + 1).join('█'));
+
+	// Replaces references to god with [GOD]
+	str = str.replace(/(the )?(lord|god)/ig, '[GOD]');
+
+	// Lowercase 'we'
+	str = str.replace(/ We/ig, ' we');
+
+	return str;
 });
 
 Vue.filter('uriComponent', function (str) {
