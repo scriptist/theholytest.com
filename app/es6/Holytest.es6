@@ -8,7 +8,7 @@ Vue.filter('censor', function(str) {
 	str = str.replace(/koran|jinn/ig, str => new Array(str.length + 1).join('█'));
 
 	// Replaces references to god with [GOD]
-	str = str.replace(/(the )?(lord|god)/ig, '[GOD]');
+	str = str.replace(/(the )?((lord( god)?)|god)/ig, 'God');
 
 	// Lowercase 'we'
 	str = str.replace(/ We/ig, ' we');
