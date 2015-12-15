@@ -112,6 +112,12 @@ module.exports = class Game {
 			guess: this.currentLine.guess,
 			correct: this.currentLine.source === this.currentLine.guess,
 		});
+
+		// Call API
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'http://api.theholytest.com/guess/' + this.currentLine.source + '/' + this.currentLine.id + '/' + this.currentLine.guess, true);
+
+		xhr.send(null);
 	}
 
 	// Start game
