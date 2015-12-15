@@ -73,9 +73,13 @@ module.exports = class Game {
 	getLinesOffline(callback) {
 		this.offline = true;
 		var lines = [];
+		var used = [];
 		while (lines.length < this.lineCount) {
 			var i = Math.floor(Math.random() * offlineData.length);
-			lines.push(Object.assign({}, offlineData[i]));
+			if (used.indexOf(i) === -1) {
+				lines.push(Object.assign({}, offlineData[i]));
+				used.push(i);
+			}
 		}
 
 		this.lines = lines;
