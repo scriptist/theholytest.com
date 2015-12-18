@@ -44,29 +44,29 @@ module.exports = class Game {
 	getLines(callback) {
 		return this.getLinesOffline(callback);
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'http://api.theholytest.com/random/' + this.lineCount + '?t=' + new Date().getTime(), true);
-		xhr.timeout = 5000;
+		// var xhr = new XMLHttpRequest();
+		// xhr.open('GET', 'http://api.theholytest.com/random/' + this.lineCount + '?t=' + new Date().getTime(), true);
+		// xhr.timeout = 5000;
 
-		xhr.onload = () => {
-			try {
-				var responseJSON = JSON.parse(xhr.responseText);
-				if (responseJSON.lines.length !== this.lineCount) {
-					throw 'Incorrect number of lines';
-				}
-				this.offline = false;
-				this.lines = responseJSON.lines;
-				callback();
-			} catch(e) {
-				this.getLinesOffline(callback);
-			}
-		};
+		// xhr.onload = () => {
+		// 	try {
+		// 		var responseJSON = JSON.parse(xhr.responseText);
+		// 		if (responseJSON.lines.length !== this.lineCount) {
+		// 			throw 'Incorrect number of lines';
+		// 		}
+		// 		this.offline = false;
+		// 		this.lines = responseJSON.lines;
+		// 		callback();
+		// 	} catch(e) {
+		// 		this.getLinesOffline(callback);
+		// 	}
+		// };
 
-		xhr.ontimeout = xhr.onerror = () => {
-			this.getLinesOffline(callback);
-		};
+		// xhr.ontimeout = xhr.onerror = () => {
+		// 	this.getLinesOffline(callback);
+		// };
 
-		xhr.send(null);
+		// xhr.send(null);
 	}
 
 	// Get lines locally (if API is down)
@@ -119,13 +119,11 @@ module.exports = class Game {
 			correct: this.currentLine.source === this.currentLine.guess,
 		});
 
-		return;
-
 		// Call API
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'http://api.theholytest.com/guess/' + this.currentLine.source + '/' + this.currentLine.id + '/' + this.currentLine.guess, true);
+		// var xhr = new XMLHttpRequest();
+		// xhr.open('POST', 'http://api.theholytest.com/guess/' + this.currentLine.source + '/' + this.currentLine.id + '/' + this.currentLine.guess, true);
 
-		xhr.send(null);
+		// xhr.send(null);
 	}
 
 	// Start game
